@@ -9,12 +9,12 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
 
 public class GoogleSearchingTest extends SelenideDriverSettings {
-    private String GoogleUrl = "https://www.google.com/";
-    private String ExceptedUrl = "www.open.ru";
 
     @Test
     public void RunGoogleSearchingTest() {
-        GoogleSearchPage searchPage = open(GoogleUrl, GoogleSearchPage.class);
+        String ExceptedUrl = "www.open.ru";
+
+        GoogleSearchPage searchPage = GoogleSearchPage.getNew();
         GoogleResultsPage resultsPage = searchPage.search("Открытие");
 
         // Для того, что бы "запустить" метод find, необходимо выполнить после (!) любое действие
@@ -26,9 +26,7 @@ public class GoogleSearchingTest extends SelenideDriverSettings {
 
     @Test
     public void RunBankOpenTest() {
-        String BankOpenUrl = "https://www.open.ru/";
-
-        BankOpenPage bankOpenPage = open(BankOpenUrl, BankOpenPage.class);
+        BankOpenPage bankOpenPage = BankOpenPage.getNew();
 
         // Сравнить, что курс покупки больше чем курс продажи для USD
         Assert.assertTrue(bankOpenPage.getUSDRateSale() > bankOpenPage.getUSDRatePurchase());
