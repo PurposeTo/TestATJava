@@ -14,16 +14,16 @@ public class GoogleSearchingTest extends SelenideDriverSettings {
 
     @Test
     public void RunGoogleSearchingTest() {
-        String exceptedUrl = "www.open.ru";
+        String expectedUrl = "www.open.ru";
 
         GoogleSearchPage searchPage = GoogleSearchPage.getNew();
         GoogleResultsPage resultsPage = searchPage.search("Открытие");
 
         // Проверка на то, что среди элементов есть нужный. Вызывает Assert
-        SelenideElement exceptedElement = resultsPage.results().findBy(text(exceptedUrl)).shouldBe();
+        SelenideElement expectedElement = resultsPage.results().findBy(text(expectedUrl)).shouldBe();
 
         // Кликаем на заголовок
-        exceptedElement.find(By.cssSelector("#rso .r")).click();
+        expectedElement.find(By.cssSelector("#rso .r")).click();
         BankOpenPage bankOpenPage = page(BankOpenPage.class);
 
         // Сравнить, что курс покупки больше чем курс продажи для USD
